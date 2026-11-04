@@ -19,3 +19,7 @@ def process_audio_text(request: AuditoryRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al procesar con Gemini: {str(e)}")
+
+    except Exception as e:
+        print(f"[ERROR AUDITIVO]: {repr(e)}", flush=True)
+        raise HTTPException(status_code=500, detail=f"Error al procesar con Gemini: {str(e)}")
