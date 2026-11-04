@@ -1,13 +1,16 @@
 from fastapi import FastAPI
+from routers import visual, auditory
 
-# 1. Creamos la instancia principal de nuestra API
 app = FastAPI(
     title="AccessIA Backend",
     description="Microservicio intermediario entre Flutter y Google Gemini API",
     version="0.1.0"
 )
 
-# 2. Definimos un endpoint GET en la ruta raíz ("/")
+# Conectamos las rutas visuales y auditivas a la aplicación principal
+app.include_router(visual.router)
+app.include_router(auditory.router)
+
 @app.get("/")
 def health_check():
     return {
